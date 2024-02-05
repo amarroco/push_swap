@@ -11,10 +11,6 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-/* push_swap:
-*	Chooses a sorting method depending on the number
-*	of values to be sorted.
-*/
 static void	push_swap(t_stack **a, t_stack **b, int size)
 {
 	if (size == 2 && !is_sorted(*a))
@@ -25,11 +21,6 @@ static void	push_swap(t_stack **a, t_stack **b, int size)
 		sort(a, b);
 }
 
-/* main:
-*	Checks if the input is correct, in which case it initializes stacks a and b,
-*	assigns each value indexes and sorts the stacks. When sorting is done, frees
-*	the stacks and exits.
-*/
 int	main(int ac, char **av)
 {
 	t_stack	*a;

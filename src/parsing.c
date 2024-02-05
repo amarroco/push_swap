@@ -25,14 +25,6 @@ t_stack	*fill_stack_values(int ac, char **av)
 	return (a);
 }
 
-/* assign_index:
-*	Assigns an index to each value in stack a. This is a convenient way to order
-*	the stack because indexes can be checked and compared instead of actual values,
-*	which may or may not be adjacent to each other.
-*		ex. values:		-3	 0	 9	 2
-*		indexes:		[1]	[2]	[4]	[3]
-*	The indexes are assigned from highest (size) to lowest (1).
-*/
 void	assign_index(t_stack *a, int size)
 {
 	t_stack	*ptr;
