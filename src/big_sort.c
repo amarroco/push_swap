@@ -2,14 +2,52 @@
 
 static void	big_moves(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
-	while (cost_a++ < 0 && cost_b < 0)
+    while (cost_a || cost_b)
+    {
+        if (cost_a < 0 && cost_b < 0)
+        {
+            move(a, b, "rrr");
+            cost_a++;
+            cost_b++;
+        }
+        else if (cost_a > 0 && cost_b > 0)
+        {
+            move(a, b, "rr");
+            cost_a--;
+            cost_b--;
+        }
+        else if (cost_a < 0)
+        {
+            move(a, NULL, "rra");
+            cost_a++;
+        }
+        else if (cost_b < 0)
+        {
+            move(NULL, b, "rrb");
+            cost_b++;
+        }
+        else if (cost_a > 0)
+        {
+            move(a, NULL, "ra");
+            cost_a--;
+        }
+        else if (cost_b > 0)
+        {
+            move(NULL, b, "rb");
+            cost_b--;
+        }
+    }
+    /*
+	while (cost_a < 0 && cost_b < 0)
     {
 		move(a, b, "rrr");
+        cost_a++;
         cost_b++;
     }
-	while (cost_a-- > 0 && cost_b > 0)
+	while (cost_a > 0 && cost_b > 0)
 	{
 		move(a, b, "rr");
+        cost_a--;
         cost_b--;
     }
     while (cost_a-- > 0)
@@ -21,7 +59,7 @@ static void	big_moves(t_stack **a, t_stack **b, int cost_a, int cost_b)
     while (cost_b++ < 0)
     {
         move(NULL, b, "rrb");
-    }
+    }*/
 	move(a, b, "pa");
 }
 
@@ -83,7 +121,7 @@ static void	shift_stack(t_stack **a)
 	lowest_pos = get_lowest_pos(a);
 	if (lowest_pos > stack_size / 2)
 	{
-		while (lowest_pos < stack_size)
+		while (!is_sorted(*a))
 		{
 			move(a, NULL, "rra");
 			lowest_pos++;
@@ -91,7 +129,7 @@ static void	shift_stack(t_stack **a)
 	}
 	else
 	{
-		while (lowest_pos > 0)
+		while (!is_sorted(*a))
 		{
 			move(a, NULL, "ra");
 			lowest_pos--;
