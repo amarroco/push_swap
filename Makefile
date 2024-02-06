@@ -9,8 +9,8 @@ SRC		= push_swap.c \
 		check.c parsing.c \
 		stack.c \
 		move.c \
-		small_sort.c \
-		big_sort.c \
+		sort_1.c \
+		sort_2.c \
 		position.c \
 		utils.c
 

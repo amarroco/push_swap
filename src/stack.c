@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 19:18:16 by amarroco          #+#    #+#             */
+/*   Updated: 2024/02/06 19:25:01 by amarroco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 t_stack	*get_stack_bottom(t_stack *stack)
@@ -44,8 +56,8 @@ int	stack_add_bottom(t_stack **stack, t_stack *new)
 	}
 	tail = get_stack_bottom(*stack);
 	tail->next = new;
-		return (1);
-	}
+	return (1);
+}
 
 int	get_stack_size(t_stack	*stack)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 19:18:01 by amarroco          #+#    #+#             */
+/*   Updated: 2024/02/06 19:23:28 by amarroco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 void	push(t_stack **src, t_stack **dst)
@@ -52,24 +64,24 @@ void	rev_rotate(t_stack **stack)
 	before_tail->next = NULL;
 }
 
-void    move(t_stack **a, t_stack **b, char *mv)
+void	move(t_stack **a, t_stack **b, char *mv)
 {
-    if (mv[0] == 's' && mv[1] == 'a')
-        swap(*a);
-    if (mv[0] == 's' && mv[1] == 'b')
-        swap(*b);
-    if (mv[0] == 'p' && mv[1] == 'a')
-        push(b, a);
-    if (mv[0] == 'p' && mv[1] == 'b')
-        push(a, b);
-    if (mv[0] == 'r' && (mv[1] == 'a' || (mv[1] == 'r' && mv[2] == 0)))
-        rotate(a);
-    if (mv[0] == 'r' && (mv[1] == 'b' || (mv[1] == 'r' && mv[2] == 0)))
-        rotate(b);
-    if (mv[0] == 'r' && mv[1] == 'r' && (mv[2] == 'a' || mv[2] == 'r'))
-        rev_rotate(a);
-    if (mv[0] == 'r' && mv[1] == 'r' && (mv[2] == 'b' || mv[2] == 'r'))
-        rev_rotate(b);
-    ft_putstr_fd(mv, 1);
-    ft_putstr_fd("\n", 1);
+	if (mv[0] == 's' && mv[1] == 'a')
+		swap(*a);
+	if (mv[0] == 's' && mv[1] == 'b')
+		swap(*b);
+	if (mv[0] == 'p' && mv[1] == 'a')
+		push(b, a);
+	if (mv[0] == 'p' && mv[1] == 'b')
+		push(a, b);
+	if (mv[0] == 'r' && (mv[1] == 'a' || (mv[1] == 'r' && mv[2] == 0)))
+		rotate(a);
+	if (mv[0] == 'r' && (mv[1] == 'b' || (mv[1] == 'r' && mv[2] == 0)))
+		rotate(b);
+	if (mv[0] == 'r' && mv[1] == 'r' && (mv[2] == 'a' || mv[2] == 'r'))
+		rev_rotate(a);
+	if (mv[0] == 'r' && mv[1] == 'r' && (mv[2] == 'b' || mv[2] == 'r'))
+		rev_rotate(b);
+	ft_putstr_fd(mv, 1);
+	ft_putstr_fd("\n", 1);
 }

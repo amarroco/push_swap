@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 19:18:09 by amarroco          #+#    #+#             */
+/*   Updated: 2024/02/06 19:25:36 by amarroco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 int	is_sorted(t_stack *stack)
@@ -28,7 +40,7 @@ int	main(int ac, char **av)
 	int		size;
 
 	if (ac < 2)
-        exit_error(NULL, NULL);
+		exit_error(NULL, NULL);
 	if (!is_correct_input(av))
 		exit_error(NULL, NULL);
 	b = NULL;

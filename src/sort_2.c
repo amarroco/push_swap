@@ -1,65 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 19:17:56 by amarroco          #+#    #+#             */
+/*   Updated: 2024/02/06 19:50:32 by amarroco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 static void	big_moves(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
-    while (cost_a || cost_b)
-    {
-        if (cost_a < 0 && cost_b < 0)
-        {
-            move(a, b, "rrr");
-            cost_a++;
-            cost_b++;
-        }
-        else if (cost_a > 0 && cost_b > 0)
-        {
-            move(a, b, "rr");
-            cost_a--;
-            cost_b--;
-        }
-        else if (cost_a < 0)
-        {
-            move(a, NULL, "rra");
-            cost_a++;
-        }
-        else if (cost_b < 0)
-        {
-            move(NULL, b, "rrb");
-            cost_b++;
-        }
-        else if (cost_a > 0)
-        {
-            move(a, NULL, "ra");
-            cost_a--;
-        }
-        else if (cost_b > 0)
-        {
-            move(NULL, b, "rb");
-            cost_b--;
-        }
-    }
-    /*
-	while (cost_a < 0 && cost_b < 0)
-    {
-		move(a, b, "rrr");
-        cost_a++;
-        cost_b++;
-    }
-	while (cost_a > 0 && cost_b > 0)
-	{
-		move(a, b, "rr");
-        cost_a--;
-        cost_b--;
-    }
-    while (cost_a-- > 0)
-        move(a, NULL, "ra");
-    while (cost_a++ < 0)
-        move(a, NULL, "rra");
-    while (cost_b-- > 0)
-        move(NULL, b, "rb");
-    while (cost_b++ < 0)
-    {
-        move(NULL, b, "rrb");
-    }*/
+	if ((cost_a < 0 && cost_b < 0) || (cost_a > 0 && cost_b > 0))
+		rotate_both(a, b, &cost_a, &cost_b);
+	if (cost_a || cost_b)
+		rotate_one(a, b, &cost_a, &cost_b);
 	move(a, b, "pa");
 }
 
