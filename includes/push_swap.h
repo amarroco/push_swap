@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:27 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:53:09 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:47:42 by alexie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,13 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-t_stack		*fill_stack_values(int ac, char **av);
-void		assign_index(t_stack *a, int ac);
 int			is_sorted(t_stack *stack);
 void		sort_3(t_stack **stack);
 void		sort(t_stack **a, t_stack **b);
 void		rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
 void		rotate_one(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
 void		move(t_stack **a, t_stack **b, char *mv);
-t_stack		*get_stack_bottom(t_stack *stack);
-t_stack		*get_stack_before_bottom(t_stack *stack);
+t_stack		*stack_bottom(t_stack *stack);
 t_stack		*stack_new(int value);
 int			stack_add_bottom(t_stack **stack, t_stack *new);
 int			get_stack_size(t_stack	*stack);
@@ -54,6 +51,10 @@ void		ft_putstr_fd(char *s, int fd);
 int			is_correct_input(char **av);
 int			is_digit(char c);
 int			is_sign(char c);
+int			is_char(char src, char c);
+int			ft_strlen(const char *s);
 int			nbstr_cmp(const char *s1, const char *s2);
+int			ft_count(char const *s, char c);
+char		**ft_split(char const *s, char c);
 
 #endif

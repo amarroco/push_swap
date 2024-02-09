@@ -6,13 +6,15 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 
 SRC		= push_swap.c \
-		check.c parsing.c \
+		check.c \
+		parsing.c \
 		stack.c \
 		move.c \
 		sort_1.c \
 		sort_2.c \
 		position.c \
-		utils.c
+		utils_1.c \
+		utils_2.c
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)

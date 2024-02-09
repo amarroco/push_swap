@@ -1,2 +1,2 @@
-big_move à la norme 
-small_sort + big_sort -> sort1 & sort2
+check leaks (args -> 0/1/2/3/4/5/100/500 éléments ; protections malloc)
+relink, norme

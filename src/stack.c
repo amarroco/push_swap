@@ -3,25 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:16 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:25:01 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:19:30 by alexie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*get_stack_bottom(t_stack *stack)
+t_stack	*stack_bottom(t_stack *stack)
 {
 	while (stack && stack->next != NULL)
-		stack = stack->next;
-	return (stack);
-}
-
-t_stack	*get_stack_before_bottom(t_stack *stack)
-{
-	while (stack && stack->next && stack->next->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
@@ -54,7 +47,7 @@ int	stack_add_bottom(t_stack **stack, t_stack *new)
 		*stack = new;
 		return (1);
 	}
-	tail = get_stack_bottom(*stack);
+	tail = stack_bottom(*stack);
 	tail->next = new;
 	return (1);
 }

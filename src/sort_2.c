@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   sort_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:17:56 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:50:32 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:19:47 by alexie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	is_sorted(t_stack *stack)
+{
+	while (stack->next != NULL)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
 
 static void	big_moves(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
@@ -21,7 +32,7 @@ static void	big_moves(t_stack **a, t_stack **b, int cost_a, int cost_b)
 	move(a, b, "pa");
 }
 
-static void	do_cheapest_move(t_stack **a, t_stack **b)
+static void	cheapest_move(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 	int		cheapest;
@@ -103,7 +114,7 @@ void	sort(t_stack **a, t_stack **b)
 	{
 		get_target_pos(a, b);
 		get_cost(a, b);
-		do_cheapest_move(a, b);
+		cheapest_move(a, b);
 	}
 	if (!is_sorted(*a))
 		shift_stack(a);

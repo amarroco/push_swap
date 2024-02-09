@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:01 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:23:28 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:09:36 by alexie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	rotate(t_stack **stack)
 
 	tmp = *stack;
 	*stack = (*stack)->next;
-	tail = get_stack_bottom(*stack);
+	tail = stack_bottom(*stack);
 	tmp->next = NULL;
 	tail->next = tmp;
 }
@@ -54,14 +54,16 @@ void	rev_rotate(t_stack **stack)
 {
 	t_stack	*tmp;
 	t_stack	*tail;
-	t_stack	*before_tail;
+	t_stack	*b_tail;
 
-	tail = get_stack_bottom(*stack);
-	before_tail = get_stack_before_bottom(*stack);
+	tail = stack_bottom(*stack);
+	b_tail = *stack;
+	while (b_tail && b_tail->next && b_tail->next->next != NULL)
+		b_tail = b_tail->next;
 	tmp = *stack;
 	*stack = tail;
 	(*stack)->next = tmp;
-	before_tail->next = NULL;
+	b_tail->next = NULL;
 }
 
 void	move(t_stack **a, t_stack **b, char *mv)

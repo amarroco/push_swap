@@ -1,102 +1,100 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 19:18:04 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:21:32 by amarroco         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/push_swap.h"
 
-t_stack	*fill_stack_values(int ac, char **av)
+static void	*ft_calloc(int nmemb, int size)
 {
-	t_stack		*a;
-	long int	nb;
-	int			i;
+	void	*ptr;
+    char	*tmp;
 
-	i = 1;
-	while (i < ac)
-	{
-		nb = ft_atoi(av[i]);
-		if (nb > 2147483647 || nb < -2147483648)
-			exit_error(&a, NULL);
-		if (i == 1)
-		{
-			a = stack_new((int)nb);
-			if (!a)
-				exit_error(NULL, NULL);
-		}
-		else if (!stack_add_bottom(&a, stack_new((int)nb)))
-			exit_error(&a, NULL);
-		i++;
-	}
-	return (a);
+	if (size > 0 && nmemb > 2147483647 / size)
+		return (NULL);
+	if (nmemb < 1 || size < 1)
+		return (malloc(0));
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	tmp = (char *)ptr;
+	while (size--)
+		*(tmp++) = 0;
+	return (ptr);
 }
 
-void	assign_index(t_stack *a, int size)
+static char	*ft_substr(char const *s, int start, int len)
 {
-	t_stack	*ptr;
-	t_stack	*highest;
-	int		value;
-
-	while (--size > 0)
-	{
-		ptr = a;
-		value = -2147483648;
-		highest = NULL;
-		while (ptr)
-		{
-			if (ptr->value == -2147483648 && ptr->index == 0)
-				ptr->index = 1;
-			if (ptr->value > value && ptr->index == 0)
-			{
-				value = ptr->value;
-				highest = ptr;
-				ptr = a;
-			}
-			else
-				ptr = ptr->next;
-		}
-		if (highest != NULL)
-			highest->index = size;
-	}
-}
-
-int	is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-int	is_sign(char c)
-{
-	return (c == '+' || c == '-');
-}
-
-int	nbstr_cmp(const char *s1, const char *s2)
-{
-	int	i;
-	int	j;
+	char	*d;
+	int	    i;
 
 	i = 0;
-	j = i;
-	if (s1[i] == '+')
+	if (!s)
+		return (NULL);
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	if (start > ft_strlen(s))
+		len = 0;
+	d = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!d)
+		return (NULL);
+	while (i < len && start < ft_strlen(s) + 1)
+		d[i++] = s[start++];
+	return (d);
+}
+
+int	ft_count(char const *s, char c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
 	{
-		if (s2[j] != '+')
+		if (s[i] != c)
+		{
+			while (s[i] != c && s[i])
+				i++;
+			count++;
+		}
+		else
 			i++;
 	}
-	else
+	return (count);
+}
+
+static char	**ft_free(char **d, char const *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (i <= ft_count(s, c))
+		free(d[i++]);
+	free(d);
+	return (NULL);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**d;
+	int	    i;
+	int	    start;
+	int	    end;
+
+	if (!s)
+		return (NULL);
+	i = 1;
+	start = 0;
+	d = (char **)ft_calloc(ft_count(s, c) + 2, sizeof(char *));
+	if (!d)
+		return (NULL);
+	while (i - 1 < ft_count(s, c))
 	{
-		if (s2[j] == '+')
-			j++;
+		while (s[start] == c)
+			start++;
+		end = start;
+		while (s[end] && s[end] != c)
+			end++;
+		d[i] = ft_substr(s, start, end - start);
+		if (!d[i++])
+			return (ft_free(d, s, c));
+		start = end;
 	}
-	while (s1[i] != '\0' && s2[j] != '\0' && s1[i] == s2[j])
-	{
-		i++;
-		j++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
+	return (d);
 }
