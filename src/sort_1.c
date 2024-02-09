@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   sort_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:12 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:52:49 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/09 22:29:18 by alexie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	is_sorted(t_stack *stack)
+{
+	while (stack->next != NULL)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
 
 static int	find_highest_index(t_stack *stack)
 {

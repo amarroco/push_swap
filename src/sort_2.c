@@ -6,22 +6,11 @@
 /*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:17:56 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/09 13:19:47 by alexie           ###   ########.fr       */
+/*   Updated: 2024/02/09 22:33:50 by alexie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	is_sorted(t_stack *stack)
-{
-	while (stack->next != NULL)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
 
 static void	big_moves(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
