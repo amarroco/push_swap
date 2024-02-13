@@ -1,6 +1,0 @@
-check leaks (args -> 0/1/2/3/4/5/100/500 éléments ; protections malloc)
-tester      nb_abs(tmp->cost_a - tmp->cost_b) + cost_a * (cost_a > cost_b) + cost_b *(cost_a < cost_b) - nb_abs(tmp->cost_a - tmp->cost_b)
-cheapest    nb_abs(tmp->cost_a - tmp->cost_b) * (cost_a < 0 && cost_b < 0 || cost_a > 0 && cost_b > 0)
-
-
-relink, norme
