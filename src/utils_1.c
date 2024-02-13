@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:18 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/09 15:09:26 by alexie           ###   ########.fr       */
+/*   Updated: 2024/02/13 16:40:18 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,22 @@ long int	ft_atoi(const char *str)
 	return (nb * isneg);
 }
 
-int	nb_abs(int nb)
+int	cost(int a, int b)
 {
-	if (nb < 0)
-		return (nb * -1);
+	int nb;
+	
+	if (a >= 0 && b >= 0 && a >= b)
+		nb = a;
+	else if (a >= 0 && b >= 0 && a < b)
+		nb = b;
+	else if (a <= 0 && b <= 0 && a >= b)
+		nb = -b;
+	else if (a <= 0 && b <= 0 && a < b)
+		nb = -a;
+	else if (a >= 0 && b <= 0)
+		nb = a - b;
+	else if (a <= 0 && b >= 0)
+		nb = b - a;
 	return (nb);
 }
 

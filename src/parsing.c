@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/13 16:21:47 by amarroco          #+#    #+#             */
+/*   Updated: 2024/02/13 16:22:55 by amarroco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 static void	*ft_calloc(int nmemb, int size)
 {
 	void	*ptr;
-    char	*tmp;
+	char	*tmp;
 
 	if (size > 0 && nmemb > 2147483647 / size)
 		return (NULL);
@@ -21,7 +33,7 @@ static void	*ft_calloc(int nmemb, int size)
 static char	*ft_substr(char const *s, int start, int len)
 {
 	char	*d;
-	int	    i;
+	int		i;
 
 	i = 0;
 	if (!s)
@@ -59,12 +71,12 @@ int	ft_count(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_free(char **d, char const *s, char c)
+char	**ft_free(char **d, int n)
 {
 	int	i;
 
 	i = 0;
-	while (i <= ft_count(s, c))
+	while (i <= n)
 		free(d[i++]);
 	free(d);
 	return (NULL);
@@ -73,9 +85,9 @@ static char	**ft_free(char **d, char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**d;
-	int	    i;
-	int	    start;
-	int	    end;
+	int		i;
+	int		start;
+	int		end;
 
 	if (!s)
 		return (NULL);
@@ -93,7 +105,7 @@ char	**ft_split(char const *s, char c)
 			end++;
 		d[i] = ft_substr(s, start, end - start);
 		if (!d[i++])
-			return (ft_free(d, s, c));
+			return (ft_free(d, ft_count(s, c)));
 		start = end;
 	}
 	return (d);

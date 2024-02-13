@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:17:56 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/09 22:33:50 by alexie           ###   ########.fr       */
+/*   Updated: 2024/02/13 16:35:34 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	cheapest_move(t_stack **a, t_stack **b)
 	cheapest = 2147483647;
 	while (tmp)
 	{
-		if (nb_abs(tmp->cost_a) + nb_abs(tmp->cost_b) < nb_abs(cheapest))
+		if (cost(tmp->cost_a, tmp->cost_b) < cheapest)
 		{
-			cheapest = nb_abs(tmp->cost_b) + nb_abs(tmp->cost_a);
+			cheapest = cost(tmp->cost_a, tmp->cost_b);
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 		}

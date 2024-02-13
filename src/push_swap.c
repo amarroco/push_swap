@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexie <alexie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:09 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/09 15:08:36 by alexie           ###   ########.fr       */
+/*   Updated: 2024/02/13 16:21:40 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,19 +97,20 @@ int	main(int ac, char **av)
 	char	**split;
 	t_stack	*a;
 	t_stack	*b;
-	
+
 	if (ac < 2)
 		exit_error(NULL, NULL);
 	if (ac == 2)
 	{
 		split = ft_split(av[1], ' ');
-		if (!split)
-			exit_error(NULL, NULL);
-		if (!is_correct_input(av))
+		if (!split || !is_correct_input(split))
 			exit_error(NULL, NULL);
 		if (!initialize(&a, &b, ft_count(av[1], ' ') + 1, split))
+		{
+			ft_free(split, ft_count(av[1], ' '));
 			exit_error(&a, &b);
-		free(split);
+		}
+		ft_free(split, ft_count(av[1], ' '));
 	}
 	else if (!is_correct_input(av))
 		exit_error(NULL, NULL);
