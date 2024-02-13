@@ -6,7 +6,7 @@
 /*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:21:47 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/13 16:22:55 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:29:14 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	*ft_calloc(int nmemb, int size)
 	if (!ptr)
 		return (NULL);
 	tmp = (char *)ptr;
-	while (size--)
+	while (nmemb--)
 		*(tmp++) = 0;
 	return (ptr);
 }
 
-static char	*ft_substr(char const *s, int start, int len)
+char	*ft_substr(char const *s, int start, int len)
 {
 	char	*d;
 	int		i;

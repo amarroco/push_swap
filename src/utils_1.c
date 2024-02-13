@@ -6,7 +6,7 @@
 /*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:18 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/13 16:40:18 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:40:02 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	exit_error(t_stack **a, t_stack **b)
+void	exit_error(t_stack **a, t_stack **b, char **av, int ac)
 {
 	if (a == NULL || *a != NULL)
 		free_stack(a);
 	if (b == NULL || *b != NULL)
 		free_stack(b);
-	ft_putstr_fd("Error\n", 1);
+	if (av)
+		ft_free(av, ac);
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
 
@@ -63,8 +65,8 @@ long int	ft_atoi(const char *str)
 
 int	cost(int a, int b)
 {
-	int nb;
-	
+	int	nb;
+
 	if (a >= 0 && b >= 0 && a >= b)
 		nb = a;
 	else if (a >= 0 && b >= 0 && a < b)

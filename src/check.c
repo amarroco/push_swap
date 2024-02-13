@@ -6,7 +6,7 @@
 /*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:17:59 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/06 19:25:08 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:38:25 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ static int	arg_is_number(char *av)
 	int	i;
 
 	i = 0;
-	if (is_sign(av[i]) && av[i + 1] != '\0')
+	if (av[i] && is_sign(av[i]) && av[i + 1] != 0)
 		i++;
 	while (av[i] && is_digit(av[i]))
 		i++;
-	if (av[i] != '\0' && !is_digit(av[i]))
+	if (av[i] != 0 && !is_digit(av[i]))
 		return (0);
 	return (1);
 }
 
-static int	no_duplicates(char **av)
+static int	no_duplicates(char **av, int ac)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	while (av[i])
+	while (i < ac)
 	{
-		j = 1;
-		while (av[j])
+		j = 2;
+		while (j < ac)
 		{
 			if (j != i && nbstr_cmp(av[i], av[j]) == 0)
 				return (0);
@@ -51,7 +51,7 @@ static int	arg_is_zero(char *av)
 	int	i;
 
 	i = 0;
-	if (is_sign(av[i]))
+	if (av[i] && is_sign(av[i]))
 		i++;
 	while (av[i] && av[i] == '0')
 		i++;
@@ -60,14 +60,15 @@ static int	arg_is_zero(char *av)
 	return (1);
 }
 
-int	is_correct_input(char **av)
+int	is_correct_input(char **av, int ac)
 {
 	int	i;
 	int	nb_zeros;
 
 	nb_zeros = 0;
 	i = 1;
-	while (av[i])
+	av[0] = 0;
+	while (i < ac)
 	{
 		if (!arg_is_number(av[i]))
 			return (0);
@@ -76,7 +77,7 @@ int	is_correct_input(char **av)
 	}
 	if (nb_zeros > 1)
 		return (0);
-	if (!no_duplicates(av))
+	if (!no_duplicates(av, ac))
 		return (0);
 	return (1);
 }
