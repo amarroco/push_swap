@@ -6,7 +6,7 @@
 /*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:17:59 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/13 19:38:25 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:19:07 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ static int	arg_is_zero(char *av)
 	return (1);
 }
 
+static int	arg_is_int(char *av)
+{
+	long int	i;
+
+	i = ft_atoi(av);
+	if (i > 2147483647 || i < -2147483648)
+		return (0);
+	return (1);
+}
+
 int	is_correct_input(char **av, int ac)
 {
 	int	i;
@@ -70,7 +80,7 @@ int	is_correct_input(char **av, int ac)
 	av[0] = 0;
 	while (i < ac)
 	{
-		if (!arg_is_number(av[i]))
+		if (!arg_is_number(av[i]) || !arg_is_int(av[i]))
 			return (0);
 		nb_zeros += arg_is_zero(av[i]);
 		i++;
