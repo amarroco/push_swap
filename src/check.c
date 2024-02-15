@@ -6,7 +6,7 @@
 /*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:17:59 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/15 19:19:07 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:45:48 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	is_correct_input(char **av, int ac)
 	av[0] = 0;
 	while (i < ac)
 	{
-		if (!arg_is_number(av[i]) || !arg_is_int(av[i]))
+		if (!av[i][0] || !arg_is_number(av[i]) || !arg_is_int(av[i]))
 			return (0);
 		nb_zeros += arg_is_zero(av[i]);
 		i++;

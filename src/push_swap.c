@@ -6,7 +6,7 @@
 /*   By: amarroco <amarroco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:18:09 by amarroco          #+#    #+#             */
-/*   Updated: 2024/02/13 19:37:46 by amarroco         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:47:46 by amarroco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
-	if (ac < 2 || av[1][0] == 0)
-		exit_error(NULL, NULL, NULL, 0);
+	if (ac < 2 || (ac == 2 && !av[1][0]))
+		return (0);
 	if (ac == 2 && ft_count(av[1], ' ') > 1)
 	{
 		split = ft_split(av[1], ' ');
